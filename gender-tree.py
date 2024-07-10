@@ -1,5 +1,6 @@
 from sklearn import tree
 from sklearn import neighbors
+from sklearn import gaussian_process
 
 
 # [height in cm, weight in kgs, shoe size]
@@ -20,3 +21,7 @@ clfNeighbors = neighbors.KNeighborsClassifier(n_neighbors=3)
 clfNeighbors = clfNeighbors.fit(X, Y)
 predictionKNN = clfNeighbors.predict([[175, 68, 41]])
 print(predictionKNN)
+
+clfGpc = gaussian_process.GaussianProcessClassifier(kernel=1.0*gaussian_process.kernels.RBF(1.0),random_state=0).fit(X,Y)
+predictionGpc = clfGpc.predict([[175, 68, 41]])
+print(predictionGpc)
