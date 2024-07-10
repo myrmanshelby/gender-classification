@@ -1,4 +1,5 @@
 from sklearn import tree
+from sklearn import neighbors
 
 
 # [height in cm, weight in kgs, shoe size]
@@ -10,10 +11,12 @@ X = [[181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37],
 Y = ['male', 'female', 'female', 'female', 'male', 'male', 'male',
      'female', 'male', 'female', 'male']
 
-clf = tree.DecisionTreeClassifier()
+clfTree = tree.DecisionTreeClassifier()
+clfTree = clfTree.fit(X,Y)
+predictionTree = clfTree.predict([[175, 68, 41]])
+print(predictionTree)
 
-clf = clf.fit(X,Y)
-
-prediction = clf.predict([[175, 68, 41]])
-
-print(prediction)
+clfNeighbors = neighbors.KNeighborsClassifier(n_neighbors=3)
+clfNeighbors = clfNeighbors.fit(X, Y)
+predictionKNN = clfNeighbors.predict([[175, 68, 41]])
+print(predictionKNN)
